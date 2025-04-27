@@ -18,7 +18,13 @@ export default function menu() {
   const styles = createStyles(theme, colorScheme);
 
   const Container = Platform.OS === "web" ? ScrollView : SafeAreaView;
- 
+  const separateComp = <View style={styles.seperator} />;
+  // const headerComp = <Text>Top of List</Text>;
+  const footerComp = (
+    <Text style={{ color: "white", marginHorizontal: "auto" }}>
+      End of Menu
+    </Text>
+  );
   return (
     <Container>
       <FlatList
@@ -26,14 +32,21 @@ export default function menu() {
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.contentContainer}
-        ItemSeparatorComponent={}
+        ItemSeparatorComponent={separateComp}
+        ListFooterComponent={footerComp}
+        ListEmptyComponent={<Text>No items</Text>}
         renderItem={({ item }) => (
-          <View>
-            <View>
-              <Text>{item.title}</Text>
-              <Text>{item.description}</Text>
+          <View style={styles.row}>
+            <View style={styles.menuTextRow}>
+              <Text style={[styles.menuItemsTitle, styles.menuItemText]}>
+                {item.title}
+              </Text>
+              <Text style={styles.menuItemText}>{item.description}</Text>
             </View>
-            <Image source={MenuImages[item.id - 1]}></Image>
+            <Image
+              style={styles.menuImage}
+              source={MenuImages[item.id - 1]}
+            ></Image>
           </View>
         )}
       ></FlatList>
@@ -47,6 +60,45 @@ function createStyles(theme, colorScheme) {
       paddingBottom: 20,
       paddingHorizontal: 12,
       backgroundColor: theme.background,
+    },
+    seperator: {
+      height: 1,
+      backgroundColor: colorScheme === "dark" ? "papayawhip" : "#000",
+      width: "50%",
+      maxWidth: 300,
+      marginHorizontal: "auto",
+      marginBottom: 10,
+    },
+
+    row: {
+      flexDirection: "row",
+      width: "100%",
+      height: 100,
+      marginBottom: 10,
+      borderStyle: "solid",
+      borderColor: colorScheme === "dark" ? "papayawhip" : "#000",
+      borderWidth: 1,
+      borderRadius: 20,
+      overflow: "hidden",
+      marginHorizontal: "auto",
+    },
+    menuTextRow: {
+      width: "65%",
+      paddingTop: 10,
+      paddingLeft: 10,
+      paddingRight: 5,
+      flexGrow: 1,
+    },
+    menuItemsTitle: {
+      fontSize: 18,
+      textDecorationLine: "underline",
+    },
+    menuItemText: {
+      color: theme.text,
+    },
+    menuImage: {
+      width: 100,
+      height: 100,
     },
   });
 }

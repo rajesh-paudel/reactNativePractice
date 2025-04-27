@@ -19,6 +19,11 @@ export default function index() {
             <Text style={styles.linkText}>contact</Text>
           </Pressable>
         </Link>
+        <Link style={styles.link} href="/menu" asChild>
+          <Pressable>
+            <Text style={styles.linkText}>menu</Text>
+          </Pressable>
+        </Link>
       </ImageBackground>
     </View>
   );
@@ -57,6 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: "rgba(0,0,0,0.7)",
     borderCurve: "circular",
+    marginBottom: 5,
   },
   image: {
     width: "100%",
