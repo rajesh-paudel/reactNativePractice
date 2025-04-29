@@ -13,7 +13,11 @@ export default function index() {
   return (
     <View style={styles.container}>
       <ImageBackground style={styles.image} source={coffeeImg}>
-        <Text style={styles.title}>Hello World</Text>
+        <Text style={styles.title}>Rajesh Coffee</Text>
+        <Text style={styles.description}>
+          Discover your favorite coffee, find nearby shops, and enjoy the
+          perfect cup—anytime, anywhere.
+        </Text>
         <Link style={styles.link} href="/contact" asChild>
           <Pressable>
             <Text style={styles.linkText}>contact</Text>
@@ -40,6 +44,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     backgroundColor: "rgba(0,0,0,0.5)",
     marginBottom: 10,
+  },
+  description: {
+    color: "white",
+    fontWeight: "semibold",
+    fontSize: 24,
+    marginBottom: 10,
+    backgroundColor: "rgba(0,0,0,0.8)",
   },
   linkText: {
     color: "white",
